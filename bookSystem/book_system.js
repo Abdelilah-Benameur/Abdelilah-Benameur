@@ -29,7 +29,8 @@ const booksDiv = books.map((book, index) =>
     <P><strong>Book Name: </strong>${book.name}</P>
     <p><strong>Author Name:</strong> ${book.authorName} </p>
     <p><strong>Book Description:</strong> ${book.bookDescription}</p>
-    <p><strong>No. of Pages:</strong> ${book.pagesNumber} mins</p> `)
+    <p><strong>No. of Pages:</strong> ${book.pagesNumber} mins</p> 
+    <button onclick="deleteBook(${index})">Delete Book</button>   `)
     document.getElementById('books').innerHTML = booksDiv;
 }
 
@@ -37,4 +38,18 @@ function clearInputs() {
     document.getElementById('bookName').value = '';
     document.getElementById('authorName').value = '';
     document.getElementById('bookDescription').value = '';
-    document.getElementById('pagesNumber').value = '';}
+    document.getElementById('pagesNumber').value = '';
+}
+
+function deleteBook(index) {
+    // Check if index is valid
+    if (index >= 0 && index < books.length) {
+        // Remove the book at the specified index
+        books.splice(index, 1);
+        
+        // Refresh the displayed book list
+        showbooks();
+    } else {
+        alert('Invalid book ID.');
+    }
+}
